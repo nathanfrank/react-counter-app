@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+    <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous"/>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@1,800&display=swap" rel="stylesheet">
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="title">Increment, Decrement, Reset Counter App w/ React</title>
+</head>
+
+<body>
+<h1>React Counter App</h1>
+    <div id="counterAppDiv"></div>
+    <script type="text/babel">
+        class CounterApp extends React.Component {
+            constructor(props){
+                super(props);
+                this.state = {
+                    count: 0
+                };
+                // bind linking statement go inside the CounterApp class component
+                this.increment = this.increment.bind(this);
+                this.decrement = this.decrement.bind(this);
+                this.reset = this.reset.bind(this);
+            }
+            // methods go before rendering
+                increment() {
+                    this.setState(state => ({
+                        count: state.count + 1
+                    }))
+                };
+                decrement() {
+                    this.setState(state => ({
+                        count: state.count - 1
+                    }))
+                };
+                reset() {
+                    this.setState(state => ({
+                        count: 0
+                    }))
+                };
+
+            render () {
+                return (
+                    <div>
+                        <button className='inc' onClick={this.increment}>Increment!</button>
+                        <button className='dec' onClick={this.decrement}>Decrement!</button>
+                        <button className='reset' onClick={this.reset}>Reset</button>
+                        <h2>Current Count: {this.state.count}</h2>
+                    </div>
+                );
+                }
+            };
+      ReactDOM.render(<CounterApp />, document.getElementById('counterAppDiv'))
+    </script>
+</body>
+
+<footer>
+
+</footer>
+<style>
+    h1 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+</style>
